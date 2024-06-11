@@ -13,7 +13,7 @@ public class Hooks {
 
     private WebDriver createWebDriver() {
         System.setProperty("webdriver.gecko.driver", "/opt/homebrew/bin/geckodriver");
-        WebDriverManager.firefoxdriver().setup();
+        WebDriverManager.firefoxdriver().driverVersion("0.34.0").setup();
         FirefoxOptions firefoxOptions = new FirefoxOptions();
         return new FirefoxDriver(firefoxOptions);
     }
@@ -25,6 +25,7 @@ public class Hooks {
             configureDriver();
             System.out.println("Initialized Firefox browser successfully.");
         } catch (Exception e) {
+            System.err.println("Failed to initialize browser: " + e.getMessage());
             throw new RuntimeException("Failed to initialize browser: Firefox", e);
         }
     }
